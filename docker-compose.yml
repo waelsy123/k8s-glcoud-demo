@@ -1,0 +1,29 @@
+version: "3.2"
+services:
+  redis: 
+    image: redis:latest
+    restart: unless-stopped
+    container_name: redis-container
+    ports:
+      - 6379:6379
+    networks:
+      - k8s-gcloud-demo-network
+    expose:
+      - 6379
+  api:
+    container_name: api-service-container
+    build:
+      context: ./api-service
+    ports:
+      - "8080:8080"
+    networks:
+      - k8s-gcloud-demo-network
+    volumes:
+      - .:/usr/src/app
+    command: npm start
+    environment:
+      NODE_ENV: development
+      restart: always
+networks:
+  k8s-gcloud-demo-network:
+    driver: bridge
