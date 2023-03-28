@@ -3,7 +3,7 @@ services:
   redis: 
     image: redis:latest
     restart: unless-stopped
-    container_name: redis-container
+    container_name: k8s-glcoud-demo_redis-container
     ports:
       - 6379:6379
     networks:
@@ -11,7 +11,8 @@ services:
     expose:
       - 6379
   api:
-    container_name: api-service-container
+    container_name: k8s-glcoud-demo_api-service-container
+    image: k8s-glcoud-demo_api-service
     build:
       context: ../api-service
     ports:

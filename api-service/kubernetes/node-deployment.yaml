@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+  labels:
+    name: node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+        - name: node
+          image: gcr.io/eco-condition-377021/k8s-glcoud-demo_api-service:latest
+          env:
+            - name: NODE_ENV
+              value: "development"
+            - name: PORT
+              value: "8080"
+      restartPolicy: Always
