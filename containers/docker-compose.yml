@@ -13,7 +13,7 @@ services:
   api:
     container_name: api-service-container
     build:
-      context: ./api-service
+      context: ../api-service
     ports:
       - "8080:8080"
     networks:

@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: containers-k8s-gcloud-demo-network
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              io.kompose.network/containers-k8s-gcloud-demo-network: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/containers-k8s-gcloud-demo-network: "true"
